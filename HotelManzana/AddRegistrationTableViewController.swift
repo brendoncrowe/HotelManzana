@@ -21,7 +21,7 @@ class AddRegistrationTableViewController:
     @IBOutlet weak var numberOfAdultsStepper: UIStepper!
     @IBOutlet weak var numberOfChildrenLabel: UILabel!
     @IBOutlet weak var numberOfChildrenStepper: UIStepper!
-    
+    @IBOutlet weak var wifiSwitch: UISwitch!
     
     
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1) // sets the index path
@@ -73,6 +73,10 @@ class AddRegistrationTableViewController:
         updateNumberOfGuests()
     }
     
+    
+    @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
+    }
+    
     @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
@@ -81,6 +85,7 @@ class AddRegistrationTableViewController:
         let checkOutDate = checkOutDatePicker.date
         let numberOfAdults = Int(numberOfAdultsStepper.value)
         let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let hasWifi = wifiSwitch.isOn // Bool state on the switch on = true, off = false
         
         print("Button Tapped")
         print("first name: \(firstName)")
@@ -90,6 +95,7 @@ class AddRegistrationTableViewController:
         print("check out: \(checkOutDate)")
         print("number of adults: \(numberOfAdults)")
         print("number of children: \(numberOfChildren)")
+        print("wifi: \(hasWifi)")
     }
     
     // This function collapses the Date Pickers, leaving more space for the table view.
