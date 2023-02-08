@@ -209,6 +209,9 @@
                                                         </label>
                                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-Yy-dUI">
                                                             <rect key="frame" x="18" y="0.0" width="94" height="32"/>
+                                                            <connections>
+                                                                <action selector="stepperValueChanged:" destination="nov-aS-HhD" eventType="valueChanged" id="abR-Ww-JaS"/>
+                                                            </connections>
                                                         </stepper>
                                                     </subviews>
                                                 </stackView>
@@ -250,6 +253,9 @@
                                                         </label>
                                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="HcS-uk-zPc">
                                                             <rect key="frame" x="18" y="0.0" width="94" height="32"/>
+                                                            <connections>
+                                                                <action selector="stepperValueChanged:" destination="nov-aS-HhD" eventType="valueChanged" id="CJY-TG-mav"/>
+                                                            </connections>
                                                         </stepper>
                                                     </subviews>
                                                 </stackView>
@@ -286,6 +292,10 @@
                         <outlet property="emailTextField" destination="Seb-cN-HCa" id="Mm0-gw-cAg"/>
                         <outlet property="firstNameTextField" destination="ER2-7Y-wRT" id="xG6-wR-Hhd"/>
                         <outlet property="lastNameTextField" destination="MBm-CY-Ln9" id="ARg-Lz-P9e"/>
+                        <outlet property="numberOfAdultsLabel" destination="SBP-he-XCs" id="t7o-JZ-OnA"/>
+                        <outlet property="numberOfAdultsStepper" destination="zQ2-Yy-dUI" id="Qt1-nr-4Ag"/>
+                        <outlet property="numberOfChildrenLabel" destination="mQq-pH-QMZ" id="7tY-8b-QAS"/>
+                        <outlet property="numberOfChildrenStepper" destination="HcS-uk-zPc" id="cU8-7h-Lg0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2uy-Y5-bBw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

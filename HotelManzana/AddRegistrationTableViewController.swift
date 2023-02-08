@@ -17,6 +17,12 @@ class AddRegistrationTableViewController:
     @IBOutlet weak var checkInDatePicker: UIDatePicker!
     @IBOutlet weak var checkOutDateLabel: UILabel!
     @IBOutlet weak var checkOutDatePicker: UIDatePicker!
+    @IBOutlet weak var numberOfAdultsLabel: UILabel!
+    @IBOutlet weak var numberOfAdultsStepper: UIStepper!
+    @IBOutlet weak var numberOfChildrenLabel: UILabel!
+    @IBOutlet weak var numberOfChildrenStepper: UIStepper!
+    
+    
     
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1) // sets the index path
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
@@ -39,6 +45,7 @@ class AddRegistrationTableViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDateViews()
+        updateNumberOfGuests()
         let midnightToday = Calendar.current.startOfDay(for: Date()) // configuring the minimum date
         checkInDatePicker.minimumDate = midnightToday
         checkInDatePicker.date = midnightToday
@@ -51,9 +58,19 @@ class AddRegistrationTableViewController:
         checkOutDateLabel.text = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
     }
     
+    private func updateNumberOfGuests() {
+        numberOfAdultsLabel.text = "\(Int(numberOfAdultsStepper.value))"
+        numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
+    }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         updateDateViews()
+    }
+    
+    
+    
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        updateNumberOfGuests()
     }
     
     @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -62,6 +79,8 @@ class AddRegistrationTableViewController:
         let email = emailTextField.text ?? ""
         let checkInDate = checkOutDatePicker.date
         let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
         
         print("Button Tapped")
         print("first name: \(firstName)")
@@ -69,6 +88,8 @@ class AddRegistrationTableViewController:
         print("email: \(email)")
         print("check in: \(checkInDate)")
         print("check out: \(checkOutDate)")
+        print("number of adults: \(numberOfAdults)")
+        print("number of children: \(numberOfChildren)")
     }
     
     // This function collapses the Date Pickers, leaving more space for the table view.
