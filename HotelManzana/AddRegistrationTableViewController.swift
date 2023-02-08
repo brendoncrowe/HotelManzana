@@ -22,7 +22,9 @@ class AddRegistrationTableViewController:
     @IBOutlet weak var numberOfChildrenLabel: UILabel!
     @IBOutlet weak var numberOfChildrenStepper: UIStepper!
     @IBOutlet weak var wifiSwitch: UISwitch!
+    @IBOutlet weak var roomTypeLabel: UILabel!
     
+    var roomType: RoomType?
     
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1) // sets the index path
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
@@ -46,6 +48,7 @@ class AddRegistrationTableViewController:
         super.viewDidLoad()
         updateDateViews()
         updateNumberOfGuests()
+        updateRoomType()
         let midnightToday = Calendar.current.startOfDay(for: Date()) // configuring the minimum date
         checkInDatePicker.minimumDate = midnightToday
         checkInDatePicker.date = midnightToday
@@ -63,6 +66,14 @@ class AddRegistrationTableViewController:
         numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
     }
     
+    private func updateRoomType() {
+        if let roomType = roomType {
+            roomTypeLabel.text = roomType.name
+        } else {
+            roomTypeLabel.text = "Not selected"
+        }
+    }
+    
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         updateDateViews()
     }
@@ -77,6 +88,14 @@ class AddRegistrationTableViewController:
     @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
     }
     
+    
+    @IBSegueAction func selectRoomType(_ coder: NSCoder) -> SelectRoomTypeViewController? {
+        let selectedRoomTypeController = SelectRoomTypeViewController(coder: coder)
+        selectedRoomTypeController?.delegate = self
+        selectedRoomTypeController?.roomType = roomType
+        return selectedRoomTypeController
+    }
+    
     @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
@@ -86,6 +105,7 @@ class AddRegistrationTableViewController:
         let numberOfAdults = Int(numberOfAdultsStepper.value)
         let numberOfChildren = Int(numberOfChildrenStepper.value)
         let hasWifi = wifiSwitch.isOn // Bool state on the switch on = true, off = false
+        let roomChoice = roomType?.name ?? "Not Set"
         
         print("Button Tapped")
         print("first name: \(firstName)")
@@ -96,6 +116,7 @@ class AddRegistrationTableViewController:
         print("number of adults: \(numberOfAdults)")
         print("number of children: \(numberOfChildren)")
         print("wifi: \(hasWifi)")
+        print("room choice: \(roomChoice)")
     }
     
     // This function collapses the Date Pickers, leaving more space for the table view.
@@ -140,5 +161,12 @@ class AddRegistrationTableViewController:
         }
         tableView.beginUpdates() // instruct the table view to update itself so that the height for each row is recalculated
         tableView.endUpdates()
+    }
+}
+
+extension AddRegistrationTableViewController: SelectRoomTypeViewControllerDelegate {
+    func selectRoomTypeViewController(_ controller: SelectRoomTypeViewController, didSelect roomType: RoomType) {
+        self.roomType = roomType
+        updateRoomType()
     }
 }
