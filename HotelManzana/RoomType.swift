@@ -19,7 +19,6 @@ struct RoomType: Equatable {
                 RoomType(id: 2, name: "Penthouse Suit", shortName: "PHS", price: 309)]
     }
     
-    
     static func == (lhs: RoomType, rhs: RoomType) -> Bool {
         return lhs.id == rhs.id
     }

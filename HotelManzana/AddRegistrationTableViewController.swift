@@ -26,6 +26,22 @@ class AddRegistrationTableViewController:
     
     var roomType: RoomType?
     
+    var registration: Registration? {
+        guard let roomType = roomType else { return nil }
+        
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let hasWifi = wifiSwitch.isOn
+        
+        return Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfAdults: numberOfAdults, numberOfChildren: numberOfChildren, wifi: hasWifi, roomType: roomType)
+        
+    }
+    
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1) // sets the index path
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     
@@ -96,27 +112,9 @@ class AddRegistrationTableViewController:
         return selectedRoomTypeController
     }
     
-    @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let checkInDate = checkOutDatePicker.date
-        let checkOutDate = checkOutDatePicker.date
-        let numberOfAdults = Int(numberOfAdultsStepper.value)
-        let numberOfChildren = Int(numberOfChildrenStepper.value)
-        let hasWifi = wifiSwitch.isOn // Bool state on the switch on = true, off = false
-        let roomChoice = roomType?.name ?? "Not Set"
-        
-        print("Button Tapped")
-        print("first name: \(firstName)")
-        print("last name: \(lastName)")
-        print("email: \(email)")
-        print("check in: \(checkInDate)")
-        print("check out: \(checkOutDate)")
-        print("number of adults: \(numberOfAdults)")
-        print("number of children: \(numberOfChildren)")
-        print("wifi: \(hasWifi)")
-        print("room choice: \(roomChoice)")
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
     
     // This function collapses the Date Pickers, leaving more space for the table view.
@@ -131,6 +129,8 @@ class AddRegistrationTableViewController:
             return UITableView.automaticDimension
         }
     }
+    
+    
     // This function sets the row height for the Date Picker
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {

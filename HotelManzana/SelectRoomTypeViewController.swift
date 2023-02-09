@@ -28,8 +28,6 @@ class SelectRoomTypeViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
-    
 }
 
 extension SelectRoomTypeViewController: UITableViewDataSource {
@@ -53,7 +51,6 @@ extension SelectRoomTypeViewController: UITableViewDataSource {
         } else {
             cell.accessoryType = .none
         }
-        
         return cell
     }
 }

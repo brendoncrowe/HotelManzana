@@ -15,6 +15,8 @@
 		40B6F3002994284000D5ABAF /* AddRegistrationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */; };
 		40C96C542994476F006062F6 /* RoomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96C532994476F006062F6 /* RoomType.swift */; };
 		40C96C562994489A006062F6 /* SelectRoomTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */; };
+		40C96C5829947B3B006062F6 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96C5729947B3B006062F6 /* Registration.swift */; };
+		40C96C5A29947E1C006062F6 /* RegistrationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRegistrationTableViewController.swift; sourceTree = "<group>"; };
 		40C96C532994476F006062F6 /* RoomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomType.swift; sourceTree = "<group>"; };
 		40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomTypeViewController.swift; sourceTree = "<group>"; };
+		40C96C5729947B3B006062F6 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,9 @@
 				40B6F2EB2994258200D5ABAF /* AppDelegate.swift */,
 				40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */,
 				40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */,
+				40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */,
 				40C96C532994476F006062F6 /* RoomType.swift */,
+				40C96C5729947B3B006062F6 /* Registration.swift */,
 				40B6F2ED2994258200D5ABAF /* SceneDelegate.swift */,
 				40B6F2F12994258200D5ABAF /* Main.storyboard */,
 				40B6F2F42994258200D5ABAF /* Assets.xcassets */,
@@ -148,7 +154,9 @@
 				40B6F3002994284000D5ABAF /* AddRegistrationTableViewController.swift in Sources */,
 				40C96C562994489A006062F6 /* SelectRoomTypeViewController.swift in Sources */,
 				40B6F2EC2994258200D5ABAF /* AppDelegate.swift in Sources */,
+				40C96C5829947B3B006062F6 /* Registration.swift in Sources */,
 				40B6F2EE2994258200D5ABAF /* SceneDelegate.swift in Sources */,
+				40C96C5A29947E1C006062F6 /* RegistrationTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
