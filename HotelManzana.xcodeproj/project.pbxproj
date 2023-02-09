@@ -64,19 +64,27 @@
 		40B6F2EA2994258200D5ABAF /* HotelManzana */ = {
 			isa = PBXGroup;
 			children = (
-				40B6F2EB2994258200D5ABAF /* AppDelegate.swift */,
 				40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */,
 				40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */,
 				40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */,
 				40C96C532994476F006062F6 /* RoomType.swift */,
 				40C96C5729947B3B006062F6 /* Registration.swift */,
+				40C96C5B2994A65C006062F6 /* Supporting */,
+				40B6F2F92994258200D5ABAF /* Info.plist */,
+			);
+			path = HotelManzana;
+			sourceTree = "<group>";
+		};
+		40C96C5B2994A65C006062F6 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				40B6F2EB2994258200D5ABAF /* AppDelegate.swift */,
 				40B6F2ED2994258200D5ABAF /* SceneDelegate.swift */,
 				40B6F2F12994258200D5ABAF /* Main.storyboard */,
 				40B6F2F42994258200D5ABAF /* Assets.xcassets */,
 				40B6F2F62994258200D5ABAF /* LaunchScreen.storyboard */,
-				40B6F2F92994258200D5ABAF /* Info.plist */,
 			);
-			path = HotelManzana;
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

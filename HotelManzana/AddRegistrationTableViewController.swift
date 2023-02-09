@@ -29,10 +29,10 @@ class AddRegistrationTableViewController:
     var existingRegistration: Registration?
     
     var registration: Registration? {
-        guard let roomType = roomType else { return nil }
+        guard let roomType = roomType,
+              let firstName = firstNameTextField.text, !firstName.isEmpty,
+              let lastName = lastNameTextField.text, !lastName.isEmpty else { return nil }
         
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let checkInDate = checkInDatePicker.date
         let checkOutDate = checkOutDatePicker.date
@@ -55,18 +55,27 @@ class AddRegistrationTableViewController:
             checkInDatePicker.isHidden = !isCheckInDatePickerVisible
         }
     }
-
+    
     var isCheckOutDatePickerVisible: Bool = false {
         didSet {
             checkOutDatePicker.isHidden = !isCheckOutDatePickerVisible
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadRegistration()
+        updateDateViews()
+        updateNumberOfGuests()
+        updateRoomType()
         
+    }
+    
+    
+    private func loadRegistration() {
         if let existingRegistration = existingRegistration {
-            title = "View Guest Registration"            
+            title = "View Guest Registration"
             roomType = existingRegistration.roomType
             firstNameTextField.text = existingRegistration.firstName
             lastNameTextField.text = existingRegistration.lastName
@@ -81,11 +90,6 @@ class AddRegistrationTableViewController:
             checkInDatePicker.minimumDate = midnightToday
             checkInDatePicker.date = midnightToday
         }
-
-        updateDateViews()
-        updateNumberOfGuests()
-        updateRoomType()
-        
     }
     
     private func updateDateViews() { // formatting the date to a String
@@ -161,7 +165,7 @@ class AddRegistrationTableViewController:
             return UITableView.automaticDimension
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         

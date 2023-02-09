@@ -16,8 +16,15 @@ class RegistrationTableViewController: UITableViewController {
         guard let addRegistrationTableViewController = unwindSegue.source as? AddRegistrationTableViewController,
         let registration = addRegistrationTableViewController.registration else { return }
 
-        registrations.append(registration)
-        tableView.reloadData()
+        // the below code checks if a registration object already exists in the selected row
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            registrations[selectedIndexPath.row] = registration
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+        } else { // if the registration object does not exist, when passed from the AddRegistrationTableViewController, it is inserted into the table view at the row corresponding with the array index
+            registrations.insert(registration, at: 0)
+            let newIndexPath = IndexPath(row: 0, section: 0) // the "start line" of the table view indexPath
+            tableView.insertRows(at: [newIndexPath], with: .none)
+        }
     }
     
     
