@@ -27,7 +27,6 @@ class RegistrationTableViewController: UITableViewController {
         }
     }
     
-    
     @IBSegueAction func showRegistration(_ coder: NSCoder, sender: Any?) -> AddRegistrationTableViewController? {
         let addRegistrationTableViewController = AddRegistrationTableViewController(coder: coder)
         

@@ -45,6 +45,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40B45E3D299544A700193C34 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */,
+				40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */,
+				40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		40B45E3E299544AF00193C34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40C96C532994476F006062F6 /* RoomType.swift */,
+				40C96C5729947B3B006062F6 /* Registration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40B45E3F2995452800193C34 /* Persistence  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Persistence ";
+			sourceTree = "<group>";
+		};
 		40B6F2DF2994258200D5ABAF = {
 			isa = PBXGroup;
 			children = (
@@ -64,11 +90,9 @@
 		40B6F2EA2994258200D5ABAF /* HotelManzana */ = {
 			isa = PBXGroup;
 			children = (
-				40B6F2FF2994284000D5ABAF /* AddRegistrationTableViewController.swift */,
-				40C96C552994489A006062F6 /* SelectRoomTypeViewController.swift */,
-				40C96C5929947E1C006062F6 /* RegistrationTableViewController.swift */,
-				40C96C532994476F006062F6 /* RoomType.swift */,
-				40C96C5729947B3B006062F6 /* Registration.swift */,
+				40B45E3F2995452800193C34 /* Persistence  */,
+				40B45E3D299544A700193C34 /* Controllers */,
+				40B45E3E299544AF00193C34 /* Models */,
 				40C96C5B2994A65C006062F6 /* Supporting */,
 				40B6F2F92994258200D5ABAF /* Info.plist */,
 			);

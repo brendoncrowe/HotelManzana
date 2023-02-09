@@ -7,9 +7,9 @@
 
 import UIKit
 
-class AddRegistrationTableViewController:
-    UITableViewController {
+class AddRegistrationTableViewController: UITableViewController {
     
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -23,6 +23,16 @@ class AddRegistrationTableViewController:
     @IBOutlet weak var numberOfChildrenStepper: UIStepper!
     @IBOutlet weak var wifiSwitch: UISwitch!
     @IBOutlet weak var roomTypeLabel: UILabel!
+    
+    // charge labels
+    
+    @IBOutlet weak var numberOfNightsLabel: UILabel!
+    @IBOutlet weak var visitDatesLabel: UILabel!
+    @IBOutlet weak var roomCostLabel: UILabel!
+    @IBOutlet weak var chargesRoomTypeLabel: UILabel!
+    @IBOutlet weak var wifiCostLabel: UILabel!
+    @IBOutlet weak var hasWifiLabel: UILabel!
+    @IBOutlet weak var totalChargeLabel: UILabel!
     
     var roomType: RoomType?
     
@@ -62,16 +72,14 @@ class AddRegistrationTableViewController:
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadRegistration()
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
-        
+        updateTotalCharge()
     }
-    
     
     private func loadRegistration() {
         if let existingRegistration = existingRegistration {
@@ -92,6 +100,36 @@ class AddRegistrationTableViewController:
         }
     }
     
+    private func updateTotalCharge() { // call this whenever updates/changes are made to the registration
+        let dateRange = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date)
+        let numberOfNights = dateRange.day ?? 0
+        
+        numberOfNightsLabel.text = "\(numberOfNights)"
+        visitDatesLabel.text = "\(checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)) - \(checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted))"
+        
+        let roomRateTotal: Int
+        if let roomType = roomType {
+            roomRateTotal = roomType.price * numberOfNights
+            roomCostLabel.text = "$\(roomRateTotal)"
+            chargesRoomTypeLabel.text = "\(roomType.name) @ $\(roomType.price)/night"
+        } else {
+            roomRateTotal = 0
+            roomCostLabel.text = "--"
+            chargesRoomTypeLabel.text = "--"
+        }
+        
+        let wifiTotal: Int
+        if wifiSwitch.isOn {
+            wifiTotal = 10 * numberOfNights
+        } else {
+            wifiTotal = 0
+        }
+        wifiCostLabel.text = "$\(wifiTotal)"
+        hasWifiLabel.text = wifiSwitch.isOn ? "Yes" : "No"
+        totalChargeLabel.text = "$\(roomRateTotal + wifiTotal)"
+        
+    }
+    
     private func updateDateViews() { // formatting the date to a String
         checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
@@ -107,24 +145,24 @@ class AddRegistrationTableViewController:
         if let roomType = roomType {
             roomTypeLabel.text = roomType.name
         } else {
-            roomTypeLabel.text = "Not selected"
+            roomTypeLabel.text = "Not Set"
         }
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         updateDateViews()
+        updateTotalCharge()
     }
-    
-    
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
+        updateTotalCharge()
     }
     
     
     @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
+        updateTotalCharge()
     }
-    
     
     @IBSegueAction func selectRoomType(_ coder: NSCoder) -> SelectRoomTypeViewController? {
         let selectedRoomTypeController = SelectRoomTypeViewController(coder: coder)
@@ -132,9 +170,6 @@ class AddRegistrationTableViewController:
         selectedRoomTypeController?.roomType = roomType
         return selectedRoomTypeController
     }
-    
-    
-    
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
@@ -152,7 +187,6 @@ class AddRegistrationTableViewController:
             return UITableView.automaticDimension
         }
     }
-    
     
     // This function sets the row height for the Date Picker
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -191,5 +225,7 @@ extension AddRegistrationTableViewController: SelectRoomTypeViewControllerDelega
     func selectRoomTypeViewController(_ controller: SelectRoomTypeViewController, didSelect roomType: RoomType) {
         self.roomType = roomType
         updateRoomType()
+        updateTotalCharge()
     }
 }
+

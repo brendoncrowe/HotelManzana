@@ -64,5 +64,4 @@ extension SelectRoomTypeViewController: UITableViewDelegate {
         delegate?.selectRoomTypeViewController(self, didSelect: roomType)
         tableView.reloadData()
     }
-    
 }

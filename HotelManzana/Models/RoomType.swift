@@ -22,6 +22,4 @@ struct RoomType: Equatable {
     static func == (lhs: RoomType, rhs: RoomType) -> Bool {
         return lhs.id == rhs.id
     }
-    
-    
 }
