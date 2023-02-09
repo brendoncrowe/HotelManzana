@@ -51,7 +51,6 @@ class AddRegistrationTableViewController: UITableViewController {
         let hasWifi = wifiSwitch.isOn
         
         return Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfAdults: numberOfAdults, numberOfChildren: numberOfChildren, wifi: hasWifi, roomType: roomType)
-        
     }
     
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1) // sets the index path
@@ -79,6 +78,13 @@ class AddRegistrationTableViewController: UITableViewController {
         updateNumberOfGuests()
         updateRoomType()
         updateTotalCharge()
+        configureTextFields()
+    }
+    
+    func configureTextFields() {
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
     }
     
     private func loadRegistration() {
@@ -101,8 +107,8 @@ class AddRegistrationTableViewController: UITableViewController {
     }
     
     private func updateTotalCharge() { // call this whenever updates/changes are made to the registration
-        let dateRange = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date)
-        let numberOfNights = dateRange.day ?? 0
+        let dateRange = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date) // this gets an array of days
+        let numberOfNights = dateRange.day ?? 0 // dateRange.day the total amount of days
         
         numberOfNightsLabel.text = "\(numberOfNights)"
         visitDatesLabel.text = "\(checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)) - \(checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted))"
@@ -227,5 +233,9 @@ extension AddRegistrationTableViewController: SelectRoomTypeViewControllerDelega
         updateRoomType()
         updateTotalCharge()
     }
+}
+
+extension AddRegistrationTableViewController: UITextFieldDelegate {
+    
 }
 

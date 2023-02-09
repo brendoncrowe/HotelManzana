@@ -10,6 +10,15 @@ import UIKit
 class RegistrationTableViewController: UITableViewController {
     
     var registrations = [Registration]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        do {
+            registrations = try PersistenceHelper.loadRegistrations()
+        } catch {
+            print("Error loading registrations: \(error)")
+        }
+    }
  
     @IBAction func unwindFromAddRegistration(unwindSegue: UIStoryboardSegue) {
 
@@ -24,6 +33,12 @@ class RegistrationTableViewController: UITableViewController {
             registrations.insert(registration, at: 0)
             let newIndexPath = IndexPath(row: 0, section: 0) // the "start line" of the table view indexPath
             tableView.insertRows(at: [newIndexPath], with: .none)
+            do {
+                try PersistenceHelper.create(registration: registration)
+                print("registration saved!")
+            } catch {
+                print("Error saving registration: \(error)")
+            }
         }
     }
     
@@ -63,6 +78,12 @@ class RegistrationTableViewController: UITableViewController {
         if editingStyle == .delete {
             registrations.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            do {
+                try PersistenceHelper.delete(registrationAt: indexPath.row)
+                print("registration deleted")
+            } catch {
+                print("Could not delete registration error: \(error)")
+            }
         }
     }
 }

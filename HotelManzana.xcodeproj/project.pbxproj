@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4022A47F2995902E001F3F36 /* Persistence .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022A47E2995902E001F3F36 /* Persistence .swift */; };
+		4022A4812995904E001F3F36 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022A4802995904E001F3F36 /* FileManagerExtension.swift */; };
 		40B6F2EC2994258200D5ABAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6F2EB2994258200D5ABAF /* AppDelegate.swift */; };
 		40B6F2EE2994258200D5ABAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6F2ED2994258200D5ABAF /* SceneDelegate.swift */; };
 		40B6F2F32994258200D5ABAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40B6F2F12994258200D5ABAF /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4022A47E2995902E001F3F36 /* Persistence .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence .swift"; sourceTree = "<group>"; };
+		4022A4802995904E001F3F36 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		40B6F2E82994258200D5ABAF /* HotelManzana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelManzana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B6F2EB2994258200D5ABAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40B6F2ED2994258200D5ABAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		40B45E3F2995452800193C34 /* Persistence  */ = {
 			isa = PBXGroup;
 			children = (
+				4022A47E2995902E001F3F36 /* Persistence .swift */,
+				4022A4802995904E001F3F36 /* FileManagerExtension.swift */,
 			);
 			path = "Persistence ";
 			sourceTree = "<group>";
@@ -183,7 +189,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C96C542994476F006062F6 /* RoomType.swift in Sources */,
+				4022A4812995904E001F3F36 /* FileManagerExtension.swift in Sources */,
 				40B6F3002994284000D5ABAF /* AddRegistrationTableViewController.swift in Sources */,
+				4022A47F2995902E001F3F36 /* Persistence .swift in Sources */,
 				40C96C562994489A006062F6 /* SelectRoomTypeViewController.swift in Sources */,
 				40B6F2EC2994258200D5ABAF /* AppDelegate.swift in Sources */,
 				40C96C5829947B3B006062F6 /* Registration.swift in Sources */,
