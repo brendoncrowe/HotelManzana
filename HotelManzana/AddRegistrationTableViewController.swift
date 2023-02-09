@@ -26,6 +26,8 @@ class AddRegistrationTableViewController:
     
     var roomType: RoomType?
     
+    var existingRegistration: Registration?
+    
     var registration: Registration? {
         guard let roomType = roomType else { return nil }
         
@@ -62,12 +64,27 @@ class AddRegistrationTableViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let existingRegistration = existingRegistration {
+            title = "View Guest Registration"            
+            roomType = existingRegistration.roomType
+            firstNameTextField.text = existingRegistration.firstName
+            lastNameTextField.text = existingRegistration.lastName
+            emailTextField.text = existingRegistration.emailAddress
+            checkInDatePicker.date = existingRegistration.checkInDate
+            checkOutDatePicker.date = existingRegistration.checkOutDate
+            numberOfAdultsStepper.value = Double(existingRegistration.numberOfAdults)
+            numberOfChildrenStepper.value = Double(existingRegistration.numberOfChildren)
+            wifiSwitch.isOn = existingRegistration.wifi
+        } else {
+            let midnightToday = Calendar.current.startOfDay(for: Date())
+            checkInDatePicker.minimumDate = midnightToday
+            checkInDatePicker.date = midnightToday
+        }
+
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
-        let midnightToday = Calendar.current.startOfDay(for: Date()) // configuring the minimum date
-        checkInDatePicker.minimumDate = midnightToday
-        checkInDatePicker.date = midnightToday
         
     }
     
@@ -111,6 +128,8 @@ class AddRegistrationTableViewController:
         selectedRoomTypeController?.roomType = roomType
         return selectedRoomTypeController
     }
+    
+    
     
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
