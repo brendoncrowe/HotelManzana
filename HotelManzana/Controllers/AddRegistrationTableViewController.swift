@@ -78,13 +78,6 @@ class AddRegistrationTableViewController: UITableViewController {
         updateNumberOfGuests()
         updateRoomType()
         updateTotalCharge()
-        configureTextFields()
-    }
-    
-    func configureTextFields() {
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
-        emailTextField.delegate = self
     }
     
     private func loadRegistration() {
@@ -136,6 +129,11 @@ class AddRegistrationTableViewController: UITableViewController {
         
     }
     
+    @IBAction func textFieldChanged(_ sender: UITextField) {
+        doneBarButton.isEnabled = existingRegistration == nil && registration != nil
+    }
+    
+    
     private func updateDateViews() { // formatting the date to a String
         checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
@@ -153,6 +151,7 @@ class AddRegistrationTableViewController: UITableViewController {
         } else {
             roomTypeLabel.text = "Not Set"
         }
+        doneBarButton.isEnabled = existingRegistration == nil && registration != nil
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
@@ -234,8 +233,3 @@ extension AddRegistrationTableViewController: SelectRoomTypeViewControllerDelega
         updateTotalCharge()
     }
 }
-
-extension AddRegistrationTableViewController: UITextFieldDelegate {
-    
-}
-
